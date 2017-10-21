@@ -1,0 +1,7 @@
+project_identifier: kowak
+api_key: 2bc319a7164349031f4f38d311e49daf
+preserve_hierarchy: true
+base_path: "/translations"
+files:
+  - source: "**/*-en.json"
+    translation: "%original_path%/%file_name%-%two_letters_code%.%file_extension%"
