@@ -34,7 +34,9 @@ UPLOAD)
         crowdin upload sources ${DRY_RUN}
     popd > /dev/null
     ;;
-UPLOAD)
-    crowdin download ${DRY_RUN}
+DOWNLOAD)
+    pushd /app > /dev/null
+        crowdin download ${DRY_RUN}
+    popd > /dev/null
     ;;
 esac
