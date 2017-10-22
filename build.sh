@@ -36,7 +36,7 @@ UPLOAD)
     ;;
 DOWNLOAD)
     pushd /app > /dev/null
-        crowdin download ${DRY_RUN}
+        crowdin download -l fr ${DRY_RUN}
     popd > /dev/null
     ;;
 esac
