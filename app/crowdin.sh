@@ -16,6 +16,10 @@ case $key in
         JOB="$2"
         shift
     ;;
+    -v|--version)
+        VERSION="$2"
+        shift
+    ;;
     -d|--dry-run)
         DRY_RUN="--dryrun"
         shift
@@ -31,12 +35,16 @@ done
 case "$JOB" in
 UPLOAD)
     pushd /app > /dev/null
-        crowdin upload sources ${DRY_RUN}
+        crowdin upload sources
     popd > /dev/null
     ;;
+BUILD_CROWDIN_PROJECT)
+    curl "https://api.crowdin.com/api/project/kowak/export?key=2bc319a7164349031f4f38d311e49daf&json=true"
+    ;;
 DOWNLOAD)
-    pushd /app > /dev/null
-        crowdin download -l fr ${DRY_RUN}
-    popd > /dev/null
+    ZIP_FILE=$(mktemp)
+    curl -o ${ZIP_FILE} "https://api.crowdin.com/api/project/kowak/download/all.zip?key=2bc319a7164349031f4f38d311e49daf&language=all"
+    unzip -d /translations ${ZIP_FILE}
+    rm ${ZIP_FILE}
     ;;
 esac
