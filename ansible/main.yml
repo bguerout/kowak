@@ -1,0 +1,13 @@
+---
+
+- hosts: kowak.dev
+  become: true
+  tags: prepare-env
+  roles:
+    - prepare-env
+
+- hosts: kowak.dev
+  become: true
+  tags: prepare-app
+  roles:
+    - prepare-app

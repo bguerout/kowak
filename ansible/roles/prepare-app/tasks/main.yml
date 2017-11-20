@@ -1,0 +1,9 @@
+---
+- name: Copy pm2 files
+  copy:
+    src: opt/kowak
+    dest: /opt
+    owner: root
+    group: root
+    mode: 0775
+    backup: yes
