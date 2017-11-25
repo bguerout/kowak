@@ -1,8 +1,8 @@
 ---
-- name: Ensure os is up to date
+- name: Update the list of available system packages
   shell: apt-get update
 
-- name: Update system packages
+- name: Install newer version of system packages
   shell: apt-get upgrade -y 
 
 - name: Creating apt sources list for node

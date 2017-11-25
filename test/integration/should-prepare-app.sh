@@ -2,7 +2,16 @@
 
 set -ue -o pipefail
 
-bash ${BIN_DIR}/setup-app.sh
-assert_eq "$(execute_remote ${ENV} '[ -f /opt/kowak/ecosystem.config.js ] && echo "exist"')" "exist" "ecosytem has not been copied"
+echo "++++++++++++++++++++++++++++++++++++++++++"
+echo "+ $( basename "${BASH_SOURCE[0]}" )"
+echo "++++++++++++++++++++++++++++++++++++++++++"
 
-echo "[SUCCESS] Tests passed!"
+bash ${BIN_DIR}/setup-app.sh
+
+assert_eq "$(execute_on_virtual_machine '[ -f /opt/kowak/conf/ecosystem.config.js ] && echo "file_exists"')" \
+            "file_exists" \
+            "ecosytem conf has not been copied"
+
+assert_eq "$(execute_on_virtual_machine '[ -f /opt/kowak/app/source/pm2/api/package.json ] && echo "file_exists"')" \
+            "file_exists" \
+            "app has not been deployed with pm2"
