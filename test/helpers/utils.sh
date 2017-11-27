@@ -4,7 +4,7 @@ if ! [ -x "$(command -v vagrant)" ]; then
     exit 1
 fi
 
-function create_vagrant_virtual_machine {
+function create_vagrant_dev_env {
     pushd ansible > /dev/null
         vagrant halt
         vagrant destroy -f || true
@@ -12,8 +12,8 @@ function create_vagrant_virtual_machine {
     popd > /dev/null
 }
 
-function execute_on_virtual_machine {
-    local command="${2}"
+function execute_on_dev {
+    local command="${1}"
     pushd ansible > /dev/null
         ssh $(vagrant ssh-config | awk 'NR>1 {print " -o "$1"="$2}') localhost "${command}"
     popd > /dev/null
