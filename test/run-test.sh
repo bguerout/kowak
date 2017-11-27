@@ -9,7 +9,7 @@ readonly ENV='dev'
 source ${SCRIPT_DIR}/helpers/utils.sh
 source ${SCRIPT_DIR}/helpers/assert.sh
 
-source ${SCRIPT_DIR}/integration/should-prepare-env.sh
+#source ${SCRIPT_DIR}/integration/should-init-env.sh
 source ${SCRIPT_DIR}/integration/should-prepare-app.sh
 
 echo "[SUCCESS] Tests passed!"

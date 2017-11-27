@@ -8,7 +8,7 @@
 - name: Creating apt sources list for node
   shell: wget -q -O - https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
-- name: Install app packages
+- name: Install packages needed by the application
   apt: pkg={{ item }} state=present
   with_items:
     - nodejs

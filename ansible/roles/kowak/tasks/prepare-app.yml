@@ -7,6 +7,3 @@
     group: root
     mode: 0775
     backup: yes
-
-- name: Init application
-  shell: pm2 --log /opt/kowak/pm2-deploy.log deploy /opt/kowak/conf/ecosystem.config.js dev setup

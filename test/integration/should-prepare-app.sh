@@ -6,12 +6,8 @@ echo "++++++++++++++++++++++++++++++++++++++++++"
 echo "+ $( basename "${BASH_SOURCE[0]}" )"
 echo "++++++++++++++++++++++++++++++++++++++++++"
 
-bash ${BIN_DIR}/setup-app.sh
+bash ${BIN_DIR}/run-playbook.sh --env dev --tag prepare-app
 
-assert_eq "$(execute_on_dev '[ -f /opt/kowak/conf/ecosystem.config.js ] && echo "file_exists"')" \
+assert_eq "$(execute_on_dev '[ -f /opt/kowak/ecosystem.config.js ] && echo "file_exists"')" \
             "file_exists" \
             "ecosytem conf has not been copied"
-
-assert_eq "$(execute_on_dev '[ -f /opt/kowak/app/source/pm2/api/package.json ] && echo "file_exists"')" \
-            "file_exists" \
-            "app has not been deployed with pm2"

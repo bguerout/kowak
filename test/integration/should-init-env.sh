@@ -8,7 +8,7 @@ echo "++++++++++++++++++++++++++++++++++++++++++"
 
 create_vagrant_dev_env
 
-bash ${BIN_DIR}/setup-env.sh
+bash ${BIN_DIR}/run-playbook.sh --env dev --tag init-env
 
 assert_eq "$(execute_on_dev 'command -v git')" \
                 "/usr/bin/git" \

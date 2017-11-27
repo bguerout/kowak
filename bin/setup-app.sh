@@ -3,7 +3,6 @@
 set -ue -o pipefail
 
 readonly SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-source ${SCRIPT_DIR}/utils.sh
 
 #########################
 #COMMAND LINE INTERFACE
@@ -24,4 +23,5 @@ esac
 shift
 done
 
-run_playbook prepare-app
+pm2 deploy ${SCRIPT_DIR}/../ansible/roles/prepare-app/files/opt/kowak/ecosystem.config.js ${ENV} setup
+

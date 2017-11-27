@@ -1,0 +1,9 @@
+---
+- name: Init env
+  import_tasks: init-env.yml
+  tags: init-env
+
+- name: Prepare aplication
+  import_tasks: prepare-app.yml
+  tags: prepare-app
+
