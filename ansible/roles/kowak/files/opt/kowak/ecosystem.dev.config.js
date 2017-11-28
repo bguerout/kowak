@@ -4,20 +4,19 @@ module.exports = {
             name: 'API',
             script: 'index.js',
             exec_mode: 'cluster',
-            instances: 2,
-            cwd: 'pm2/api',
+            instances: 12,
             instance_var: 'PM2_INSTANCE_ID',
+            env: {
+                "NODE_ENV": "dev",
+            },
         }
     ],
     deploy: {
         dev: {
             'host': '127.0.0.1',
-            'ref': 'origin/master',
+            'ref': `origin/${process.env.APP_VERSION}`,
             'repo': 'https://github.com/bguerout/kowak.git',
             'path': '/home/vagrant/kowak',
-            'env': {
-                "NODE_ENV": "dev",
-            },
             'ssh_options': [
                 "HostName=127.0.0.1",
                 "User=vagrant",
@@ -29,7 +28,7 @@ module.exports = {
                 "IdentitiesOnly=yes",
                 "LogLevel=FATAL",
             ],
-            'post-deploy': 'npm install && pm2 startOrRestart /opt/kowak/ecosystem.config.js --env dev --update-env',
+            'post-deploy': `cd pm2/api && npm install && pm2 startOrRestart /opt/kowak/ecosystem.dev.config.js --env dev --update-env`,
         }
     }
 };

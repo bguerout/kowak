@@ -6,9 +6,7 @@ echo "++++++++++++++++++++++++++++++++++++++++++"
 echo "+ $( basename "${BASH_SOURCE[0]}" )"
 echo "++++++++++++++++++++++++++++++++++++++++++"
 
-create_vagrant_dev_env
-
-bash ${BIN_DIR}/run-playbook.sh --env dev --tag init-env
+run_playbook dev init-env
 
 assert_eq "$(execute_on_dev 'command -v git')" \
                 "/usr/bin/git" \

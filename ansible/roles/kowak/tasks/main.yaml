@@ -3,7 +3,7 @@
   import_tasks: init-env.yml
   tags: init-env
 
-- name: Prepare aplication
-  import_tasks: prepare-app.yml
-  tags: prepare-app
+- name: Deploy aplication
+  import_tasks: deploy-app.yml
+  tags: deploy-app
 
