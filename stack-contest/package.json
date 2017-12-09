@@ -1,0 +1,25 @@
+{
+  "name": "stack-contest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ava": "^0.24.0",
+    "f-promise": "^1.2.11",
+    "fibers": "^2.0.0",
+    "nodemon": "^1.12.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon .",
+    "test": "ava"
+  },
+  "author": "",
+  "license": "ISC",
+  "ava": {
+    "files": [
+      "test/**/*-test.js"
+    ],
+    "powerAssert": false
+  }
+}
