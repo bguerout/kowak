@@ -1,34 +1,30 @@
-const test = require('ava');
+const { fail } = require('assert');
+const { microtask, timer, immediate, nexttick } = require('../lib/native-promise');
 const { assertFullStackIsMissing, assertFullStackIsPresent } = require('./utils');
 
-test.beforeEach(t => {
-    t.context = require('../lib/native-promise');
-});
+describe(__filename, () => {
 
-test('[native-promise] microtask', t => {
-    const { microtask } = t.context;
-    return microtask()
-        .then(() => t.fail())
-        .catch(assertFullStackIsPresent(t, 'native-promise', 'microtask'));
-});
+    it('[native-promise] microtask', () => {
+        return microtask()
+        .then(() => fail())
+        .catch(e => assertFullStackIsPresent('native-promise', 'microtask', e));
+    });
 
-test('[native-promise] timer', t => {
-    const { timer } = t.context;
-    return timer()
-        .then(() => t.fail())
-        .catch(assertFullStackIsMissing(t, 'native-promise', 'timer'));
-});
+    it('[native-promise] timer', () => {
+        return timer()
+        .then(() => fail())
+        .catch(e => assertFullStackIsMissing('native-promise', 'timer', e));
+    });
 
-test('[native-promise] immediate', t => {
-    const { immediate } = t.context;
-    return immediate()
-        .then(() => t.fail())
-        .catch(assertFullStackIsMissing(t, 'native-promise', 'immediate'));
-});
+    it('[native-promise] immediate', () => {
+        return immediate()
+        .then(() => fail())
+        .catch(e => assertFullStackIsMissing('native-promise', 'immediate', e));
+    });
 
-test('[native-promise] nexttick', t => {
-    const { nexttick } = t.context;
-    return nexttick()
-        .then(() => t.fail())
-        .catch(assertFullStackIsMissing(t, 'native-promise', 'nexttick'));
+    it('[native-promise] nexttick', () => {
+        return nexttick()
+        .then(() => fail())
+        .catch(e => assertFullStackIsMissing('native-promise', 'nexttick', e));
+    });
 });

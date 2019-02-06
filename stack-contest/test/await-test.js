@@ -1,43 +1,38 @@
-const test = require('ava');
+const { microtask, timer, immediate, nexttick } = require('../lib/await');
 const { assertFullStackIsMissing, assertFullStackIsPresent } = require('./utils');
 
-test.beforeEach(t => {
-    t.context = require('../lib/await');
-});
+describe(__filename, () => {
 
-test('[await] microtask', async t => {
-    const { microtask } = t.context;
-    try {
-        await microtask();
-    } catch (e) {
-        assertFullStackIsPresent(t, 'await', 'microtask')(e)
-    }
-});
+    it('[await] microtask', async () => {
+        try {
+            await microtask();
+        } catch (e) {
+            assertFullStackIsPresent('await', 'microtask', e)
+        }
+    });
 
-test('[await] timer', async t => {
-    const { timer } = t.context;
-    try {
-        await timer();
-    } catch (e) {
-        assertFullStackIsMissing(t, 'await', 'timer')(e)
-    }
-});
+    it('[await] timer', async () => {
+        try {
+            await timer();
+        } catch (e) {
+            assertFullStackIsMissing('await', 'timer', e)
+        }
+    });
 
-test('[await] immediate', async t => {
-    const { immediate } = t.context;
-    try {
-        await immediate();
-    } catch (e) {
-        assertFullStackIsMissing(t, 'await', 'immediate')(e)
-    }
-});
+    it('[await] immediate', async () => {
+        try {
+            await immediate();
+        } catch (e) {
+            assertFullStackIsMissing('await', 'immediate', e)
+        }
+    });
 
-test('[await] nexttick', async t => {
-    const { nexttick } = t.context;
+    it('[await] nexttick', async () => {
 
-    try {
-        await nexttick();
-    } catch (e) {
-        assertFullStackIsMissing(t, 'await', 'nexttick')(e)
-    }
+        try {
+            await nexttick();
+        } catch (e) {
+            assertFullStackIsMissing('await', 'nexttick', e)
+        }
+    });
 });

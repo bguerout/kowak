@@ -1,34 +1,30 @@
-const test = require('ava');
-const { assertFullStackIsPartial, assertFullStackIsPresent } = require('./utils');
+const { fail } = require('assert');
+const { microtask, timer, immediate, nexttick } = require('../lib/fibers');
+const { assertFullStackIsPartial } = require('./utils');
 
-test.beforeEach(t => {
-    t.context = require('../lib/fibers');
-});
+describe(__filename, () => {
 
-test('[fibers] microtask', t => {
-    const { microtask } = t.context;
-    return microtask()
-        .then(() => t.fail())
-        .catch(assertFullStackIsPartial(t, 'fibers', 'microtask'));
-});
+    it('[fibers] microtask', () => {
+        return microtask()
+        .then(() => fail())
+        .catch(e => assertFullStackIsPartial('fibers', 'microtask', e));
+    });
 
-test('[fibers] timer', t => {
-    const { timer } = t.context;
-    return timer()
-        .then(() => t.fail())
-        .catch(assertFullStackIsPartial(t, 'fibers', 'timer'));
-});
+    it('[fibers] timer', () => {
+        return timer()
+        .then(() => fail())
+        .catch(e => assertFullStackIsPartial('fibers', 'timer', e));
+    });
 
-test('[fibers] immediate', t => {
-    const { immediate } = t.context;
-    return immediate()
-        .then(() => t.fail())
-        .catch(assertFullStackIsPartial(t, 'fibers', 'immediate'));
-});
+    it('[fibers] immediate', () => {
+        return immediate()
+        .then(() => fail())
+        .catch(e => assertFullStackIsPartial('fibers', 'immediate', e));
+    });
 
-test('[fibers] nexttick', t => {
-    const { nexttick } = t.context;
-    return nexttick()
-        .then(() => t.fail())
-        .catch(assertFullStackIsPartial(t, 'fibers', 'nexttick'));
+    it('[fibers] nexttick', () => {
+        return nexttick()
+        .then(() => fail())
+        .catch(e => assertFullStackIsPartial('fibers', 'nexttick', e));
+    });
 });
