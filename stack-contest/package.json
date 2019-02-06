@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "ava": "^0.24.0",
-    "f-promise": "^1.2.11",
-    "fibers": "^2.0.0",
-    "nodemon": "^1.12.5"
+    "ava": "1.2.1",
+    "f-promise": "1.4.0",
+    "fibers": "3.1.1",
+    "nodemon": "1.18.9",
+    "rx": "4.1.0"
   },
   "devDependencies": {},
   "scripts": {
